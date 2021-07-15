@@ -29,7 +29,7 @@ class MonitorGeneral extends Component{
     render(){
         return (
             <div>
-            {/* Aqui esta el pan, hay que invocar la funcion y pasar los props
+            {/* Aqui esta el pan, hay que invocar la funcion y pasar los props tstststs
             Con el fin de mostrar los cambios en pantalla. */}
                <div>{this.renderBusqueda("BL / BOOKING",this.state.Visible)}</div>
                <div>{this.renderBusqueda("MARCAS",this.state.Visible)}</div>
