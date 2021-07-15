@@ -1,0 +1,32 @@
+[
+  {
+    "sFechaConsultaRemota": "6/ene/2021",
+    "sHoraConsultaRemota": "10:48:05",
+    "sPatente": "0323",
+    "sPedimento": "0000448",
+    "sTipoPedimento": "NORMAL",
+    "sTraficoAduanero": "EXPORTACIÓN",
+    "sRegimen": "A1",
+    "nValorMercancia": 472141.00
+  },
+  {
+    "sFechaConsultaRemota": "7/ene/2021",
+    "sHoraConsultaRemota": "13:26:59",
+    "sPatente": "0323",
+    "sPedimento": "1000009",
+    "sTipoPedimento": "NORMAL",
+    "sTraficoAduanero": "IMPORTACIÓN",
+    "sRegimen": "A1",
+    "nValorMercancia": 111005.00
+  },
+  {
+    "sFechaConsultaRemota": "7/ene/2021",
+    "sHoraConsultaRemota": "13:21:20",
+    "sPatente": "0323",
+    "sPedimento": "1000013",
+    "sTipoPedimento": "NORMAL",
+    "sTraficoAduanero": "IMPORTACIÓN",
+    "sRegimen": "A1",
+    "nValorMercancia": 111005.00
+  }
+]
