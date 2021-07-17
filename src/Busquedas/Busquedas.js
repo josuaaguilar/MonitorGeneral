@@ -15,17 +15,54 @@ class Busquedas extends Component {
 
 //export default Busquedas; */
 
+import React,{ useEffect, useState } from "react";
+import {Link} from  'react-router-dom';
+import {useParams} from 'react-router';
+
 
 
 /* Componente funcional
 No requiere que se anteponga this.  como en el componente de clase
 */
 function Busquedas(props){
+    //console.log(useParams());
+//    const Busquedas = (props) => {
+    
+    //const [count,setCount] = useState([]);
+    const [resp,setResp] = useState([]);
+    //let {id} = useParams();
+    const fetchApi = async (id) => {
+        const data = await fetch('https://age-of-empires-2-api.herokuapp.com/api/v1/civilizations');
+        const usuarios = await data.json();
+        setResp(usuarios.civilizations);
+        
+        
+    }
+
+    useEffect(()=> {
+        //document.title = `clicks ${count} times`;
+        //fetchApi();        
+    },[]);
+
+    
     return(
-        <div>
+        <div className="BusquedasForm">
         <p>{props.Nombre}</p>
-        <input/>
-        <button onClick={props.onClick}> Buscar!!!</button>
+        <input/><br/>
+        {/* <button onClick={props.onClick}> Buscar!!!</button> */}
+        <button onClick={() => fetchApi()}>Presiona para solicitar Usuarios!!</button>
+        <ul>
+            {
+                resp.map(item => (
+                    
+                    <li key={item.id}>
+                    <Link to={`/Busquedas/${item.id}`}>
+                        {item.id} - {item.name} - {item.expansion}
+                    </Link>
+                    </li>
+                ))
+            }
+        </ul>
         </div>
     );
 }

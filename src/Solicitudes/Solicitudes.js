@@ -2,8 +2,9 @@ import React , {Component} from 'react';
 import Programacion from './Programacion';
 
 class Solicitudes extends Component{
+
   render(){
-    return <Programacion/>
+    return <Programacion ApiResponse={this.props.ApiResponse}/>
   }
 }
 export default Solicitudes;

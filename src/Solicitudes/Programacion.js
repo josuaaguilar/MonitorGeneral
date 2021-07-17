@@ -5,6 +5,7 @@ class Programacion extends Component{
         return(
         <div>
             <p>Estoy en Programacion</p>
+            <p>{this.props.ApiResponse}</p>
         </div>);
     }
 } 

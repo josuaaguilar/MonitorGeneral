@@ -5,6 +5,7 @@ render(){
   return( 
   <div>
     <p>Estoy en salidas</p>
+    
   </div>
   );
 }
