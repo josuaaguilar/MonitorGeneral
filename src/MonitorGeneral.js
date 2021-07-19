@@ -41,7 +41,7 @@ class MonitorGeneral extends Component{
                 <Link to={`/Solicitudes`}>
                    <ul>
                        <li>
-                           Haz click para mostrar las solicitudes
+                           Haz click para mostrar las solicitudes !!! 
                        </li>
                    </ul>
                 </Link>

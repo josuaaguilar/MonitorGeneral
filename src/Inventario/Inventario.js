@@ -1,14 +1,12 @@
 import React , {Component} from 'react';
 
 
-class Inventario extends Component{
-  render(){
+function Inventario (){
     return (
-    <div>
-      <p>Estoy en Inventario</p>
+    <div className="InventarioMain">
+      <p>Buscar mercancia</p>
+
     </div>
     );
-  }
-
 }
 export default Inventario;
