@@ -2,21 +2,43 @@ import { useEffect } from "react";
 
 
 function InventarioResult (props) {
-    //console.log(props);
-    
-    //console.log(Res);
-    const Res = props.res
+    //console.log(props);    
+    const Res = props.res;
+    /* const data2 = await fetch('https://age-of-empires-2-api.herokuapp.com/api/v1/technology/garland_wars');
+    const res2 = await data2.json() */
+    console.log(Res)
 
     return(
         <div className="InventarioResult">
-        <ul>
-                {
-                    Res.map(item => (
-                        <li key={item.id}>{item.name}</li>
-                    ))
-                }
-            </ul>
-                   
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Armamento</th>
+                        <th>Bonus</th>
+                        <th>Bonus de Civilizacion</th>
+                        <th>Tecnologia unica</th>
+                    </tr>                    
+                </thead>            
+                <tbody>
+                    {Res.map(item => (
+                    <tr key={item.id}>
+                        <td>{item.id}</td>
+                        <td>{item.name}</td>
+                        <td>{item.army_type}</td>
+                        <td>{item.team_bonus}</td>
+                        <td>
+                                    {/* tr como renglones para cada posicion del arreglo */
+                                        item.civilization_bonus.map((bonus,index) => {return (<li key={index}>{bonus}</li>)})
+                                    }
+                        </td>
+                        <td>{/*agregar aqui una funcion para solicitar cada url de tecnología unica */}</td>
+                    </tr>
+                    
+                    ))}
+                </tbody>
+            </table>                   
         </div>
     ); //Retorna JSX
 }
