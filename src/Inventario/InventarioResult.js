@@ -1,25 +1,48 @@
 import { useEffect } from "react";
-
+import EncabezadoRow from '../Component/Row';
 
 function InventarioResult (props) {
     //console.log(props);    
     const Res = props.res;
     /* const data2 = await fetch('https://age-of-empires-2-api.herokuapp.com/api/v1/technology/garland_wars');
     const res2 = await data2.json() */
-    console.log(Res)
+    let Myprops = []/* () => {
+        const mapArray = Res.map(item => {return item})
+        for(const props in mapArray[0]){
+            //  console.log(props)
+              Myprops.push(props)       
+          }
+
+    }  */
+    useEffect(() => {
+        const mapArray = Res.map(item => {return item})        
+        
+        for(const props in mapArray[0]){
+          //  console.log(props)
+            Myprops.push(props)       
+        }
+        
+    });
+    const Encabezados = () =>{
+        const mapArray = Res.map(item => {return item})
+        
+        //console.log(mapArray[0])
+        for(const props in mapArray[0]){
+          //  console.log(props)
+            Myprops.push(props)       
+        }
+        //console.log(Myprops)
+        
+        
+
+    }
 
     return(
         <div className="InventarioResult">
+        <button>Encabezados</button>
             <table>
                 <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>Armamento</th>
-                        <th>Bonus</th>
-                        <th>Bonus de Civilizacion</th>
-                        <th>Tecnologia unica</th>
-                    </tr>                    
+                    <EncabezadoRow encabezados = {Myprops}/>                    
                 </thead>            
                 <tbody>
                     {Res.map(item => (
