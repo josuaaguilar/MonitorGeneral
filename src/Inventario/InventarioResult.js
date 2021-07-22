@@ -1,56 +1,36 @@
 import { useEffect } from "react";
 import EncabezadoRow from '../Component/Row';
+import fetchData from "../Funciones/fetchData";
 
 function InventarioResult (props) {
-    //console.log(props);    
+    
     const Res = props.res;
-    /* const data2 = await fetch('https://age-of-empires-2-api.herokuapp.com/api/v1/technology/garland_wars');
-    const res2 = await data2.json() */
-    let Myprops = []/* () => {
-        const mapArray = Res.map(item => {return item})
-        for(const props in mapArray[0]){
-            //  console.log(props)
-              Myprops.push(props)       
-          }
-
-    }  */
+    let encabezadosArr = [];
     useEffect(() => {
-        const mapArray = Res.map(item => {return item})        
-        
-        for(const props in mapArray[0]){
-          //  console.log(props)
-            Myprops.push(props)       
-        }
-        
+            for(const encabezados in Res[0]){
+                encabezadosArr.push(encabezados)
+            }
     });
-    const Encabezados = () =>{
-        const mapArray = Res.map(item => {return item})
-        
-        //console.log(mapArray[0])
-        for(const props in mapArray[0]){
-          //  console.log(props)
-            Myprops.push(props)       
-        }
-        //console.log(Myprops)
-        
-        
-
+    async function onClickEncabezados() {
+        fetchData("https://age-of-empires-2-api.herokuapp.com/api/v1/unit/jaguar_warrior")
     }
-
+    
+    
     return(
         <div className="InventarioResult">
-        <button>Encabezados</button>
+        <button onClick={onClickEncabezados}>Encabezados</button>
             <table>
                 <thead>
-                    <EncabezadoRow encabezados = {Myprops}/>                    
+                    <EncabezadoRow encabezados = {encabezadosArr}/>                    
                 </thead>            
                 <tbody>
                     {Res.map(item => (
                     <tr key={item.id}>
                         <td>{item.id}</td>
                         <td>{item.name}</td>
+                        <td>{item.expansion}</td>
                         <td>{item.army_type}</td>
-                        <td>{item.team_bonus}</td>
+                        <td>{{/* fetchData(item.unique_unit).map(item => {<li key={item.id}>{item.name}</li>}) */}}</td>
                         <td>
                                     {/* tr como renglones para cada posicion del arreglo */
                                         item.civilization_bonus.map((bonus,index) => {return (<li key={index}>{bonus}</li>)})
