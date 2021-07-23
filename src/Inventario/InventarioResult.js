@@ -1,27 +1,45 @@
 import { useEffect } from "react";
-import EncabezadoRow from '../Component/Row';
+import ListResult from '../Component/ListResult';
 import fetchData from "../Funciones/fetchData";
 
 function InventarioResult (props) {
-    
+    let unique_unitArray = [];
     const Res = props.res;
     let encabezadosArr = [];
-    useEffect(() => {
+   /*  useEffect(() => {
             for(const encabezados in Res[0]){
                 encabezadosArr.push(encabezados)
             }
-    });
-    async function onClickEncabezados() {
-        fetchData("https://age-of-empires-2-api.herokuapp.com/api/v1/unit/jaguar_warrior")
+    }); */
+    async function handleClick(url){
+        //let url = e.target.text;
+        const data = await fetch(url);
+        const res = await data.json()
+        return res
     }
-    
+    async function handleLiClic(e) {
+        //alert("Click en ul")
+        const url = e.target.value
+        if(url ===""){
+            alert("No hay datos")
+        } else {
+            const res = await handleClick(url)
+            alert(res.name)
+        }        
+    }
     
     return(
         <div className="InventarioResult">
-        <button onClick={onClickEncabezados}>Encabezados</button>
+        <button>Encabezados</button>
             <table>
                 <thead>
-                    <EncabezadoRow encabezados = {encabezadosArr}/>                    
+                   <tr>
+                       <th>id</th>
+                       <th>Nombre</th>
+                       <th>Expacion</th>
+                       <th>Tipo de armamento</th>
+                       <th>Unidades unicas</th>
+                   </tr>
                 </thead>            
                 <tbody>
                     {Res.map(item => (
@@ -30,13 +48,11 @@ function InventarioResult (props) {
                         <td>{item.name}</td>
                         <td>{item.expansion}</td>
                         <td>{item.army_type}</td>
-                        <td>{{/* fetchData(item.unique_unit).map(item => {<li key={item.id}>{item.name}</li>}) */}}</td>
                         <td>
-                                    {/* tr como renglones para cada posicion del arreglo */
-                                        item.civilization_bonus.map((bonus,index) => {return (<li key={index}>{bonus}</li>)})
-                                    }
+                            {/* <button onClick={handleLiClic} value={item.unique_unit}>Haz clic para mas detalles</button> */}
+                            {<ListResult url={item.unique_unit} className="ListResult"/>}
+                            
                         </td>
-                        <td>{/*agregar aqui una funcion para solicitar cada url de tecnología unica */}</td>
                     </tr>
                     
                     ))}
@@ -47,6 +63,21 @@ function InventarioResult (props) {
 }
 
 /*
+---------------------------------------------
+<td>{agregar aqui una funcion para solicitar cada url de tecnología unica }</td>
+---------------------------------------------
+<td>
+                            <ul key={item.id}>
+                                {handleClick(item.unique_unit)}
+                            </ul>
+                        </td>
+------------------------------
+<td>
+                                    {tr como renglones para cada posicion del arreglo
+                                        item.civilization_bonus.map((bonus,index) => {return (<li key={index}>{bonus}</li>)})
+                                    }
+                        </td>
+-------------------------------
 Esta funcion retorna en forma de lista, vamos a cambiarla por un retorno del tipo Select > Options:
 <ul>
                 {
@@ -68,3 +99,4 @@ Esta funcion me sirve para seleccionar de un conjunto de posibilidades, preferen
 
 */
 export default InventarioResult;
+

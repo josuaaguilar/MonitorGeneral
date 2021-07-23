@@ -1,9 +1,11 @@
 import { Fragment, useEffect, useState } from "react";
 
 function Row(props){
-    const [encabezados , setEncabezados] = useState([])    
+    const [encabezados , setEncabezados] = useState([])   
+    console.log(props.data) 
     useEffect(() => {
-        setEncabezados(props.encabezados)
+        //setEncabezados(props.encabezados)
+        console.log(props.id)
     })    
     /* De nada sirve separar los componentes como si fueran objetos que puedo manipular. Preferente que en un solo componente se llamen todos los JSX.
     Validar componentes funcionales que retornan estructuras completas. Validar si es requerido que se llaman componentes hijos en estos componentes.
