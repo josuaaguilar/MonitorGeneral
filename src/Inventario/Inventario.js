@@ -14,7 +14,6 @@ function Inventario (){
     let filter = e.target.value.toUpperCase();
     setFilter(Result.filter(item => item.name.toUpperCase().startsWith(filter)));
   }
-  
     return (
     <div className="Inventario">
       <p>Filtra los resultados:</p>

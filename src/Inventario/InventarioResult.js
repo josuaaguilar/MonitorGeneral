@@ -1,33 +1,7 @@
-import { useEffect } from "react";
 import ListResult from '../Component/ListResult';
-import fetchData from "../Funciones/fetchData";
 
 function InventarioResult (props) {
-    let unique_unitArray = [];
     const Res = props.res;
-    let encabezadosArr = [];
-   /*  useEffect(() => {
-            for(const encabezados in Res[0]){
-                encabezadosArr.push(encabezados)
-            }
-    }); */
-    async function handleClick(url){
-        //let url = e.target.text;
-        const data = await fetch(url);
-        const res = await data.json()
-        return res
-    }
-    async function handleLiClic(e) {
-        //alert("Click en ul")
-        const url = e.target.value
-        if(url ===""){
-            alert("No hay datos")
-        } else {
-            const res = await handleClick(url)
-            alert(res.name)
-        }        
-    }
-    
     return(
         <div className="InventarioResult">
         <button>Encabezados</button>
@@ -49,9 +23,7 @@ function InventarioResult (props) {
                         <td>{item.expansion}</td>
                         <td>{item.army_type}</td>
                         <td>
-                            {/* <button onClick={handleLiClic} value={item.unique_unit}>Haz clic para mas detalles</button> */}
                             {<ListResult url={item.unique_unit} className="ListResult"/>}
-                            
                         </td>
                     </tr>
                     
