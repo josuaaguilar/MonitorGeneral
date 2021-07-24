@@ -18,7 +18,6 @@ class MonitorGeneral extends Component{
             Visible : false,
             ApiResponse: ""
         }
-
     }
     handleClick(Visible){
         this.setState(

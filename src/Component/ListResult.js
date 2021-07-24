@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 function ListResult (props){
     let url = props.url; 
     const [Result, setResult] = useState([])
+    const [isUpdate,setUpdate] = useState(true)
+    let unique_unitArr = []
     /*
     res -> {
         "id": 79, 
@@ -14,16 +16,33 @@ function ListResult (props){
             "Food": 60, 
             "Gold": 30
     }*/
-    useEffect(async () => { 
-        const data = await fetch("https://age-of-empires-2-api.herokuapp.com/api/v1/unit/jaguar_warrior");
-        const res = await data.json()        
-        setResult(res)
-        },[])
+
+
+    useEffect(async () => {
+        console.log(Result) // primera pasada : verctor vacio []
+        if(isUpdate){
+            console.log("is update true")
+            url.map(async item => {
+                //console.log(item) -> la url por cada posicion del vector en el objeto : {url : ["",""...]}
+                const data = await fetch(item)
+                const res = await data.json()
+                unique_unitArr.push(res)
+                setResult(unique_unitArr)    
+                //console.log(Result)  -> Vacio 
+            })
+            setUpdate(false)
+        } else {
+            console.log("Is update false")
+        }
+        console.log(Result) // muestra el objeto { id:0, name:"samu"....}
+        })
     return(        
             <ul>
-                {
-                    <li key={Result.id} >{Result.name}</li>
-                }
+            {
+                Result.map((item,index) => (
+                    <li key={index}>Nombre: {item.name}</li>
+                ))
+            }
             </ul>       
     ); //Retorna JSX
 }
